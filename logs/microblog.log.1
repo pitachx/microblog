@@ -1,4 +1,4 @@
-2018-04-15 21:09:50,233 ERROR: Exception on /user/bers [GET] [in /home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py:1560]
+2018-04-15 21:18:22,012 ERROR: Exception on /index [GET] [in /home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py:1560]
 Traceback (most recent call last):
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
     context)
@@ -23,36 +23,10 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "/home/bers/PycharmProjects/microblog/app/routes.py", line 89, in user
-    return render_template('user.html', user=user, posts=posts)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 134, in render_template
-    context, ctx.app)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 116, in _render
-    rv = template.render(context)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/home/bers/PycharmProjects/microblog/app/templates/user.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/home/bers/PycharmProjects/microblog/app/templates/base.html", line 32, in top-level template code
-    {% block content %}{% endblock %}
-  File "/home/bers/PycharmProjects/microblog/app/templates/user.html", line 11, in block "content"
-    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/dynamic.py", line 265, in count
-    return self._clone(sess).count()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3113, in count
-    return self.from_self(col).scalar()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2866, in scalar
-    ret = self.one()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2837, in one
-    ret = self.one_or_none()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2807, in one_or_none
-    ret = list(self)
+  File "/home/bers/PycharmProjects/microblog/app/routes.py", line 29, in index
+    posts = [
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2726, in all
+    return list(self)
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2878, in __iter__
     return self._execute_and_instances(context)
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2901, in _execute_and_instances
@@ -75,42 +49,5 @@ Traceback (most recent call last):
     context)
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: followers [SQL: 'SELECT count(*) AS count_1 \nFROM (SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen \nFROM user, followers \nWHERE followers.followed_id = ? AND followers.follower_id = user.id) AS anon_1'] [parameters: (2,)] (Background on this error at: http://sqlalche.me/e/e3q8)
-2018-04-15 21:09:51,799 ERROR: Exception on /index [GET] [in /home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py:1560]
-Traceback (most recent call last):
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
-    raise value
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/home/bers/PycharmProjects/microblog/app/routes.py", line 39, in index
-    return render_template("index.html", title='Home Page', form=form, posts=posts)
-UnboundLocalError: local variable 'posts' referenced before assignment
-2018-04-15 21:10:02,207 ERROR: Exception on /index [GET] [in /home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py:1560]
-Traceback (most recent call last):
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
-    raise value
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/home/bers/PycharmProjects/microblog/app/routes.py", line 39, in index
-    return render_template("index.html", title='Home Page', form=form, posts=posts)
-UnboundLocalError: local variable 'posts' referenced before assignment
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: followers [SQL: 'SELECT anon_1.post_id AS anon_1_post_id, anon_1.post_body AS anon_1_post_body, anon_1.post_timestamp AS anon_1_post_timestamp, anon_1.post_user_id AS anon_1_post_user_id \nFROM (SELECT post.id AS post_id, post.body AS post_body, post.timestamp AS post_timestamp, post.user_id AS post_user_id \nFROM post JOIN followers ON followers.followed_id = post.user_id \nWHERE followers.follower_id = ? UNION SELECT post.id AS post_id, post.body AS post_body, post.timestamp AS post_timestamp, post.user_id AS post_user_id \nFROM post \nWHERE post.user_id = ?) AS anon_1 ORDER BY anon_1.post_timestamp DESC'] [parameters: (2, 2)] (Background on this error at: http://sqlalche.me/e/e3q8)
+2018-04-15 21:18:25,700 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
