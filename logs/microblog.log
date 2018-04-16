@@ -1,13 +1,4 @@
-2018-04-15 21:18:45,309 ERROR: Exception on /user/bers [GET] [in /home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py:1560]
-Traceback (most recent call last):
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
-    context)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such table: followers
-
-The above exception was the direct cause of the following exception:
-
+2018-04-16 22:17:19,819 ERROR: Exception on /login [GET] [in /home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py:1560]
 Traceback (most recent call last):
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -21,10 +12,8 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/home/bers/PycharmProjects/microblog/app/routes.py", line 89, in user
-    return render_template('user.html', user=user, posts=posts)
+  File "/home/bers/PycharmProjects/microblog/app/routes.py", line 56, in login
+    return render_template('login.html', title='Sign In', form=form)
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 134, in render_template
     context, ctx.app)
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 116, in _render
@@ -37,52 +26,66 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/home/bers/PycharmProjects/microblog/app/templates/user.html", line 1, in top-level template code
+  File "/home/bers/PycharmProjects/microblog/app/templates/login.html", line 1, in top-level template code
     {% extends "base.html" %}
   File "/home/bers/PycharmProjects/microblog/app/templates/base.html", line 32, in top-level template code
     {% block content %}{% endblock %}
-  File "/home/bers/PycharmProjects/microblog/app/templates/user.html", line 11, in block "content"
-    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/dynamic.py", line 265, in count
-    return self._clone(sess).count()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3113, in count
-    return self.from_self(col).scalar()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2866, in scalar
-    ret = self.one()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2837, in one
-    ret = self.one_or_none()
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2807, in one_or_none
-    ret = list(self)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2878, in __iter__
-    return self._execute_and_instances(context)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2901, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
-    return meth(self, multiparams, params)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
-    compiled_sql, distilled_params
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
-    context)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
-    exc_info
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+  File "/home/bers/PycharmProjects/microblog/app/templates/login.html", line 26, in block "content"
+    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
+2018-04-16 22:17:20,438 ERROR: Exception on /login [GET] [in /home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/bers/PycharmProjects/microblog/app/routes.py", line 56, in login
+    return render_template('login.html', title='Sign In', form=form)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 134, in render_template
+    context, ctx.app)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/templating.py", line 116, in _render
+    rv = template.render(context)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
-    context)
-  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: followers [SQL: 'SELECT count(*) AS count_1 \nFROM (SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen \nFROM user, followers \nWHERE followers.followed_id = ? AND followers.follower_id = user.id) AS anon_1'] [parameters: (2,)] (Background on this error at: http://sqlalche.me/e/e3q8)
-2018-04-15 21:19:55,042 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:20:09,045 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:20:15,967 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:20:19,228 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:20:25,952 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:28:20,130 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:32:34,111 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:36:18,410 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:37:08,781 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
-2018-04-15 21:40:24,700 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:45]
+  File "/home/bers/PycharmProjects/microblog/app/templates/login.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/bers/PycharmProjects/microblog/app/templates/base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+  File "/home/bers/PycharmProjects/microblog/app/templates/login.html", line 26, in block "content"
+    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/bers/PycharmProjects/microblog/venv/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
+2018-04-16 22:39:53,909 INFO: Microblog startup [in /home/bers/PycharmProjects/microblog/app/__init__.py:48]
